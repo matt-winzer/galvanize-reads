@@ -15,3 +15,12 @@ a {
 .book-cover {
   max-height: 20em;
 }
+
+.index-books-img {
+  padding-top: 6em;
+  padding-bottom: 6em;
+}
+
+span.card-title.black-text {
+  margin: 0 auto;
+}
