@@ -11,3 +11,7 @@ a {
 #brand-logo {
   margin-left: 1em !important;
 }
+
+.book-cover {
+  max-height: 20em;
+}
