@@ -39,7 +39,7 @@ exports.seed = function(knex, Promise) {
         last_name: 'Simpson',
         biography: 'Kyle Simpson is an Open Web Evangelist who\'s passionate about all things JavaScript. He\'s an author, workshop trainer, tech speaker, and OSS contributor/leader.',
         portrait_url: 'https://s3-us-west-2.amazonaws.com/assessment-images/galvanize_reads/photos/kyle_simpson.jpg'
-      }, ];
+      }];
 
       return knex('author').insert(authors);
     });
