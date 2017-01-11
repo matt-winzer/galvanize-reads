@@ -1,8 +1,13 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+/*#5c6bc0 indigo lighten-1*/
+
+#brand-logo {
+  margin-left: 1em !important;
 }
