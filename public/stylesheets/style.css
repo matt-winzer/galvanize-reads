@@ -12,6 +12,10 @@ a {
   margin-left: 1em !important;
 }
 
+nav {
+  margin-bottom: 1em;
+}
+
 .book-cover {
   max-height: 20em;
 }
@@ -23,4 +27,9 @@ a {
 
 span.card-title.black-text {
   margin: 0 auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center
 }
