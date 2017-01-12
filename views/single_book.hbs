@@ -13,10 +13,24 @@
           </div>
           <div class="card-action">
             <a href="/books/{{this.id}}/edit">Edit</a>
-            <a href="#">Delete</a>
+            <a href="#modal1">Delete</a>
           </div>
         </div>
       </div>
     </div>
 
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal indigo lighten-1">
+  <div class="modal-content white-text">
+    <h4>Delete: {{this.title}}?</h4>
+    <h5>Are you sure?</h5>
+  </div>
+  <div class="modal-footer">
+    <form class="delete-button" action="/{{id}}?_method=delete" method="post">
+      <button id="book-delete-button" class="waves-effect waves-light btn indigo lighten-2 hoverable" type="submit" name="delete-button">Delete</button>
+    </form>
+      <button id="book-delete-cancel" class="waves-effect waves-light btn indigo lighten-2">Cancel</button>
+  </div>
 </div>

@@ -33,3 +33,7 @@ span.card-title.black-text {
   display: flex;
   justify-content: center
 }
+
+#book-delete-button {
+  margin-left: 1em;
+}
