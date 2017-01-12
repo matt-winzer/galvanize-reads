@@ -16,7 +16,7 @@ router.get('/books', function(req, res, next) {
     });
 });
 
-// render new book form
+// Render new book form
 router.get('/books/new', function(req, res, next) {
   res.render('newbook');
 });
@@ -28,6 +28,23 @@ router.post('/', function (req, res) {
     .returning('id')
     .then((id) => {
       res.redirect('/books');
+    });
+});
+
+// GET single book
+router.get('/books/:id', function (req, res) {
+  let id = req.params.id;
+  knex('book')
+    .where('id', id)
+    .first()
+    .then((book) => {
+      res.render('single_book', {
+        id: book.id,
+        title: book.title,
+        genre: book.genre,
+        description: book.description,
+        cover_url: book.cover_url,
+      });
     });
 });
 

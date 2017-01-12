@@ -1,15 +1,5 @@
 <div class="row">
-  <div class="col s6 button-container">
-    <a href="/books/new" class="waves-effect waves-light btn-large indigo lighten-2 book-button">Add Book</a>
-  </div>
-  <div class="col s6 button-container">
-    <a class="waves-effect waves-light btn-large indigo lighten-2 book-button">Add Author</a>
-  </div>
-</div>
 
-<div class="row">
-
-  {{#each books}}
     <div class="col s12">
       <div class="card horizontal">
         <div class="card-image">
@@ -22,11 +12,11 @@
             <p class="book-description">{{this.description}}</p>
           </div>
           <div class="card-action">
-            <a href="/books/{{this.id}}">Details</a>
+            <a href="#">Edit</a>
+            <a href="#">Delete</a>
           </div>
         </div>
       </div>
     </div>
-  {{/each}}
 
 </div>
