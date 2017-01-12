@@ -39,13 +39,27 @@ router.get('/books/new', (req, res, next) => {
 });
 
 // Render edit book form
+router.get('/books/:id/edit', function(req, res, next) {
+  let id = req.params.id;
+  knex('book')
+    .where('id', id)
+    .first()
+    .then((book) => {
+      res.render('edit', {
+        id: book.id,
+        title: book.title,
+        genre: book.genre,
+        description: book.description,
+        cover_url: book.cover_url
+      });
+    });
+});
 
-
-// PUT route
+// PUT route: edit book
 router.put('/books/:id/edit', (req, res, next) => {
   let id = req.params.id;
   let edit = req.body;
-  knex('asana')
+  knex('book')
     .where('id', id)
     .update(edit)
     .returning('id')
