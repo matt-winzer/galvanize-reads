@@ -16,6 +16,11 @@ router.get('/books', (req, res, next) => {
     });
 });
 
+// Render new book form
+router.get('/books/new', function(req, res, next) {
+  res.render('newbook');
+});
+
 // GET single book
 router.get('/books/:id', (req, res, next) => {
   let id = req.params.id;
@@ -31,11 +36,6 @@ router.get('/books/:id', (req, res, next) => {
         cover_url: book.cover_url,
       });
     });
-});
-
-// Render new book form
-router.get('/books/new', (req, res, next) => {
-  res.render('newbook');
 });
 
 // Render edit book form
