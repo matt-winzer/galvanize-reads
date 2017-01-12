@@ -64,7 +64,7 @@ router.put('/books/:id/edit', (req, res, next) => {
     .update(edit)
     .returning('id')
     .then((id) => {
-      res.redirect('/' + id);
+      res.redirect('/books/' + id);
     });
 });
 

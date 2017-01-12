@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col s12">
     <div class="card-panel indigo lighten-1">
-      <h3 class="edit-book-title center-align white-text">Edit a Book</h3>
+      <h3 class="edit-book-title center-align white-text">Edit: {{this.title}}</h3>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <form class="col s12" action="/{{id}}/edit?_method=put" method="post">
+  <form class="col s12" action="/books/{{id}}/edit?_method=put" method="post">
     <div class="row">
       <div class="input-field col s6">
         <input name="title" id="title" type="text" class="validate" value="{{this.title}}">
