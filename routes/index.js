@@ -16,4 +16,8 @@ router.get('/books', function(req, res, next) {
     });
 });
 
+router.get('/books/new', function(req, res, next) {
+  res.render('newbook');
+});
+
 module.exports = router;
