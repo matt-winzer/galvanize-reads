@@ -16,6 +16,29 @@ router.get('/books', (req, res, next) => {
     });
 });
 
+// GET all books with authors
+router.get('/books', (req, res, next) => {
+  knex('book')
+    .select(
+    'book.title as book_title',
+    'book.id as book_id',
+    'book.genre',
+    'book.description',
+    'book.cover_url',
+    'author.id as author_id',
+    'author.first_name as author_first_name',
+    'author.last_name as author_last_name',
+    'author.biography',
+    'author.portrait_url'
+    )
+    .join('book_author', 'book_author.book_id', 'book.id')
+    .join('author', 'author.id', 'book_author.author_id')
+    .then((books) => {
+      const reformatted = reformat.reformatBooks(books);
+      res.json(reformatted);
+    });
+});
+
 // Render new book form
 router.get('/books/new', function(req, res, next) {
   res.render('newbook');
