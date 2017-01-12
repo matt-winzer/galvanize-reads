@@ -45,7 +45,7 @@ router.get('/books/:id/edit', function(req, res, next) {
     .where('id', id)
     .first()
     .then((book) => {
-      res.render('edit', {
+      res.render('edit_book', {
         id: book.id,
         title: book.title,
         genre: book.genre,
