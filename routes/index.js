@@ -36,7 +36,8 @@ router.get('/books', (req, res, next) => {
     .join('author', 'author.id', 'book_author.author_id')
     .then((books) => {
       const reformatted = reformat.reformatBooks(books);
-      res.json(reformatted);
+      console.log(reformatted);
+      res.render('books', {reformatted:reformatted});
     });
 });
 
