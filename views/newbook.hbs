@@ -7,20 +7,20 @@
 </div>
 
 <div class="row">
-  <form class="col s12">
+  <form class="col s12" action="/" method="post">
     <div class="row">
       <div class="input-field col s6">
-        <input id="title" type="text" class="validate">
+        <input name="title" id="title" type="text" class="validate">
         <label for="title">Title</label>
       </div>
       <div class="input-field col s6">
-        <input id="genre" type="text" class="validate">
+        <input name="genre" id="genre" type="text" class="validate">
         <label for="genre">Genre</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="description" class="materialize-textarea" class="validate"></textarea>
+        <textarea name="description" id="description" class="materialize-textarea" class="validate"></textarea>
         <label for="description">Description</label>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <label for="author">Author</label>
       </div>
       <div class="input-field col s6">
-        <input id="cover_url" type="text" class="validate">
+        <input name="cover_url" id="cover_url" type="text" class="validate">
         <label for="cover_url">Cover URL</label>
       </div>
     </div>
