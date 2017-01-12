@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card-panel indigo lighten-1">
+      <h3 class="add-book-title center-align white-text">Add a Book</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <form class="col s12" action="/" method="post">
+    <div class="row">
+      <div class="input-field col s6">
+        <input name="title" id="title" type="text" class="validate">
+        <label for="title">Title</label>
+      </div>
+      <div class="input-field col s6">
+        <input name="genre" id="genre" type="text" class="validate">
+        <label for="genre">Genre</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea name="description" id="description" class="materialize-textarea" class="validate"></textarea>
+        <label for="description">Description</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input disabled id="author" type="text" class="validate">
+        <label for="author">Author</label>
+      </div>
+      <div class="input-field col s6">
+        <input name="cover_url" id="cover_url" type="text" class="validate">
+        <label for="cover_url">Cover URL</label>
+      </div>
+    </div>
+    <button type="submit" class="waves-effect waves-light btn-large indigo lighten-2 hoverable">Submit New Book</button>
+  </form>
+</div>
