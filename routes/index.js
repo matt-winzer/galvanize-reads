@@ -50,18 +50,41 @@ router.get('/books/new', function(req, res, next) {
 router.get('/books/:id', (req, res, next) => {
   let id = req.params.id;
   knex('book')
-    .where('id', id)
-    .first()
+    .select(
+    'book.title as book_title',
+    'book.id as book_id',
+    'book.genre',
+    'book.description',
+    'book.cover_url',
+    'author.id as author_id',
+    'author.first_name as author_first_name',
+    'author.last_name as author_last_name',
+    'author.biography',
+    'author.portrait_url'
+    )
+    .join('book_author', 'book_author.book_id', 'book.id')
+    .join('author', 'author.id', 'book_author.author_id')
+    .where('book_id', id)
     .then((book) => {
-      res.render('single_book', {
-        id: book.id,
-        title: book.title,
-        genre: book.genre,
-        description: book.description,
-        cover_url: book.cover_url,
-      });
+      const reformatted = reformat.reformatBooks(book);
+      console.log(reformatted);
+      res.render('single_book', {reformatted:reformatted});
     });
 });
+
+    //   knex('book')
+    //     .where('id', id)
+    //     .first()
+    //     .then((book) => {
+    //       res.render('single_book', {
+    //         id: book.id,
+    //         title: book.title,
+    //         genre: book.genre,
+    //         description: book.description,
+    //         cover_url: book.cover_url,
+    //       });
+    //     });
+    // });
 
 // Render edit book form
 router.get('/books/:id/edit', function(req, res, next) {
