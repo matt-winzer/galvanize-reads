@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
+var reformat = require('../db/reformatBooks');
 
 // GET home page
 router.get('/', (req, res, next) => {
@@ -8,13 +9,13 @@ router.get('/', (req, res, next) => {
 });
 
 // GET all books
-router.get('/books', (req, res, next) => {
-  return knex('book')
-    .then((books) => {
-      console.log(books);
-      res.render('books', {books: books});
-    });
-});
+// router.get('/books', (req, res, next) => {
+//   return knex('book')
+//     .then((books) => {
+//       console.log(books);
+//       res.render('books', {books: books});
+//     });
+// });
 
 // GET all books with authors
 router.get('/books', (req, res, next) => {
