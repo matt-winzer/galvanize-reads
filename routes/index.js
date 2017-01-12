@@ -42,6 +42,7 @@ router.get('/books/:id', function (req, res) {
         id: book.id,
         title: book.title,
         genre: book.genre,
+        description: book.description,
         cover_url: book.cover_url,
       });
     });
