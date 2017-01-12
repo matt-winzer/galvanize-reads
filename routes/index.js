@@ -68,6 +68,17 @@ router.put('/books/:id/edit', (req, res, next) => {
     });
 });
 
+// DELETE route
+router.delete('/books/:id', (req, res) => {
+  let id = req.params.id;
+  knex('book')
+    .where('id', id)
+    .del()
+    .then((result) => {
+      res.redirect('/books');
+    });
+});
+
 // POST new book
 router.post('/', (req, res, next) => {
   knex('book')
