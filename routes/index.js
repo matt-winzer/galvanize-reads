@@ -3,12 +3,12 @@ var router = express.Router();
 var knex = require('../db/knex');
 
 // GET home page
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
 // GET all books
-router.get('/books', function(req, res, next) {
+router.get('/books', (req, res, next) => {
   return knex('book')
     .then((books) => {
       console.log(books);
@@ -16,23 +16,8 @@ router.get('/books', function(req, res, next) {
     });
 });
 
-// Render new book form
-router.get('/books/new', function(req, res, next) {
-  res.render('newbook');
-});
-
-// POST new book
-router.post('/', function (req, res) {
-  knex('book')
-    .insert(req.body)
-    .returning('id')
-    .then((id) => {
-      res.redirect('/books');
-    });
-});
-
 // GET single book
-router.get('/books/:id', function (req, res) {
+router.get('/books/:id', (req, res, next) => {
   let id = req.params.id;
   knex('book')
     .where('id', id)
@@ -47,5 +32,37 @@ router.get('/books/:id', function (req, res) {
       });
     });
 });
+
+// Render new book form
+router.get('/books/new', (req, res, next) => {
+  res.render('newbook');
+});
+
+// Render edit book form
+
+
+// PUT route
+router.put('/books/:id/edit', (req, res, next) => {
+  let id = req.params.id;
+  let edit = req.body;
+  knex('asana')
+    .where('id', id)
+    .update(edit)
+    .returning('id')
+    .then((id) => {
+      res.redirect('/' + id);
+    });
+});
+
+// POST new book
+router.post('/', (req, res, next) => {
+  knex('book')
+    .insert(req.body)
+    .returning('id')
+    .then((id) => {
+      res.redirect('/books');
+    });
+});
+
 
 module.exports = router;
