@@ -136,7 +136,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-// GET all books with authors
+// GET all authors with books
 router.get('/authors', (req, res, next) => {
   knex('book')
     .select(
@@ -155,8 +155,33 @@ router.get('/authors', (req, res, next) => {
     .join('author', 'author.id', 'book_author.author_id')
     .then((authors) => {
       const reformatted = reformatAuthors.reformatAuthors(authors);
-      // res.json(reformatted);
       res.render('authors', {reformatted:reformatted});
+    });
+});
+
+// GET single author
+router.get('/authors/:id', (req, res, next) => {
+  let id = req.params.id;
+  knex('book')
+    .select(
+    'book.title as book_title',
+    'book.id as book_id',
+    'book.genre',
+    'book.description',
+    'book.cover_url',
+    'author.id as author_id',
+    'author.first_name as author_first_name',
+    'author.last_name as author_last_name',
+    'author.biography',
+    'author.portrait_url'
+    )
+    .join('book_author', 'book_author.book_id', 'book.id')
+    .join('author', 'author.id', 'book_author.author_id')
+    .where('author_id', id)
+    .then((author) => {
+      const reformatted = reformatAuthors.reformatAuthors(author);
+      console.log(reformatted);
+      res.render('single_author', {reformatted:reformatted});
     });
 });
 
