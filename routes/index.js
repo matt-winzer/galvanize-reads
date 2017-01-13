@@ -9,15 +9,6 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
-// GET all books
-// router.get('/books', (req, res, next) => {
-//   return knex('book')
-//     .then((books) => {
-//       console.log(books);
-//       res.render('books', {books: books});
-//     });
-// });
-
 // GET all books with authors
 router.get('/books', (req, res, next) => {
   knex('book')
@@ -70,20 +61,6 @@ router.get('/books/:id', (req, res, next) => {
       res.render('single_book', {reformatted:reformatted});
     });
 });
-
-    //   knex('book')
-    //     .where('id', id)
-    //     .first()
-    //     .then((book) => {
-    //       res.render('single_book', {
-    //         id: book.id,
-    //         title: book.title,
-    //         genre: book.genre,
-    //         description: book.description,
-    //         cover_url: book.cover_url,
-    //       });
-    //     });
-    // });
 
 // Render edit book form
 router.get('/books/:id/edit', function(req, res, next) {
@@ -159,6 +136,11 @@ router.get('/authors', (req, res, next) => {
     });
 });
 
+// Render new author form
+router.get('/authors/new', function(req, res, next) {
+  res.render('newauthor');
+});
+
 // GET single author
 router.get('/authors/:id', (req, res, next) => {
   let id = req.params.id;
@@ -182,6 +164,16 @@ router.get('/authors/:id', (req, res, next) => {
       const reformatted = reformatAuthors.reformatAuthors(author);
       console.log(reformatted);
       res.render('single_author', {reformatted:reformatted});
+    });
+});
+
+// POST new author
+router.post('/newauthor', (req, res, next) => {
+  knex('author')
+    .insert(req.body)
+    .returning('id')
+    .then((id) => {
+      res.redirect('/authors');
     });
 });
 
