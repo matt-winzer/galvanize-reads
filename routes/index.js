@@ -37,7 +37,6 @@ router.get('/books', (req, res, next) => {
     .join('author', 'author.id', 'book_author.author_id')
     .then((books) => {
       const reformatted = reformat.reformatBooks(books);
-      console.log(reformatted);
       res.render('books', {reformatted:reformatted});
     });
 });
@@ -68,7 +67,6 @@ router.get('/books/:id', (req, res, next) => {
     .where('book_id', id)
     .then((book) => {
       const reformatted = reformat.reformatBooks(book);
-      console.log(reformatted);
       res.render('single_book', {reformatted:reformatted});
     });
 });
@@ -157,8 +155,7 @@ router.get('/authors', (req, res, next) => {
     .join('author', 'author.id', 'book_author.author_id')
     .then((authors) => {
       const reformatted = reformatAuthors.reformatAuthors(authors);
-      console.log(reformatted);
-      res.json(reformatted);
+      res.render('authors', {reformatted:reformatted});
     });
 });
 
