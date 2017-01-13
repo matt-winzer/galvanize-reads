@@ -185,6 +185,19 @@ router.get('/authors/:id/edit', (req, res, next) => {
     });
 });
 
+// PUT route: edit author
+router.put('/authors/:id/edit', (req, res, next) => {
+  let id = req.params.id;
+  let edit = req.body;
+  knex('author')
+    .where('id', id)
+    .update(edit)
+    .returning('id')
+    .then((id) => {
+      res.redirect('/authors/' + id);
+    });
+});
+
 // POST new author
 router.post('/newauthor', (req, res, next) => {
   knex('author')
@@ -194,8 +207,5 @@ router.post('/newauthor', (req, res, next) => {
       res.redirect('/authors');
     });
 });
-
-
-
 
 module.exports = router;
