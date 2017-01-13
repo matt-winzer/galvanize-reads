@@ -9,15 +9,6 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
-// GET all books
-// router.get('/books', (req, res, next) => {
-//   return knex('book')
-//     .then((books) => {
-//       console.log(books);
-//       res.render('books', {books: books});
-//     });
-// });
-
 // GET all books with authors
 router.get('/books', (req, res, next) => {
   knex('book')
@@ -70,20 +61,6 @@ router.get('/books/:id', (req, res, next) => {
       res.render('single_book', {reformatted:reformatted});
     });
 });
-
-    //   knex('book')
-    //     .where('id', id)
-    //     .first()
-    //     .then((book) => {
-    //       res.render('single_book', {
-    //         id: book.id,
-    //         title: book.title,
-    //         genre: book.genre,
-    //         description: book.description,
-    //         cover_url: book.cover_url,
-    //       });
-    //     });
-    // });
 
 // Render edit book form
 router.get('/books/:id/edit', function(req, res, next) {
