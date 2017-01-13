@@ -37,3 +37,7 @@ span.card-title.black-text {
 #book-delete-button {
   margin-left: 1em;
 }
+
+#add-book-button, #add-author-button {
+  width: 100%;
+}

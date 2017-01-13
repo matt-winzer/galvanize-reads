@@ -155,6 +155,7 @@ router.get('/authors', (req, res, next) => {
     .join('author', 'author.id', 'book_author.author_id')
     .then((authors) => {
       const reformatted = reformatAuthors.reformatAuthors(authors);
+      // res.json(reformatted);
       res.render('authors', {reformatted:reformatted});
     });
 });
