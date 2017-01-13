@@ -167,6 +167,24 @@ router.get('/authors/:id', (req, res, next) => {
     });
 });
 
+
+// Render edit author form
+router.get('/authors/:id/edit', (req, res, next) => {
+  let id = req.params.id;
+  knex('author')
+    .where('id', id)
+    .first()
+    .then((author) => {
+      res.render('edit_author', {
+        id: author.id,
+        first_name: author.first_name,
+        last_name: author.last_name,
+        biography: author.biography,
+        portrait_url: author.portrait_url
+      });
+    });
+});
+
 // POST new author
 router.post('/newauthor', (req, res, next) => {
   knex('author')
@@ -176,6 +194,8 @@ router.post('/newauthor', (req, res, next) => {
       res.redirect('/authors');
     });
 });
+
+
 
 
 module.exports = router;
