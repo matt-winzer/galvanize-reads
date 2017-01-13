@@ -159,6 +159,11 @@ router.get('/authors', (req, res, next) => {
     });
 });
 
+// Render new author form
+router.get('/authors/new', function(req, res, next) {
+  res.render('newauthor');
+});
+
 // GET single author
 router.get('/authors/:id', (req, res, next) => {
   let id = req.params.id;
