@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 var reformat = require('../db/reformatBooks');
+var reformatAuthors = require('../db/reformatAuthors');
 
 // GET home page
 router.get('/', (req, res, next) => {
@@ -36,7 +37,6 @@ router.get('/books', (req, res, next) => {
     .join('author', 'author.id', 'book_author.author_id')
     .then((books) => {
       const reformatted = reformat.reformatBooks(books);
-      console.log(reformatted);
       res.render('books', {reformatted:reformatted});
     });
 });
@@ -67,7 +67,6 @@ router.get('/books/:id', (req, res, next) => {
     .where('book_id', id)
     .then((book) => {
       const reformatted = reformat.reformatBooks(book);
-      console.log(reformatted);
       res.render('single_book', {reformatted:reformatted});
     });
 });
@@ -134,6 +133,30 @@ router.post('/', (req, res, next) => {
     .returning('id')
     .then((id) => {
       res.redirect('/books');
+    });
+});
+
+// GET all books with authors
+router.get('/authors', (req, res, next) => {
+  knex('book')
+    .select(
+    'book.title as book_title',
+    'book.id as book_id',
+    'book.genre',
+    'book.description',
+    'book.cover_url',
+    'author.id as author_id',
+    'author.first_name as author_first_name',
+    'author.last_name as author_last_name',
+    'author.biography',
+    'author.portrait_url'
+    )
+    .join('book_author', 'book_author.book_id', 'book.id')
+    .join('author', 'author.id', 'book_author.author_id')
+    .then((authors) => {
+      const reformatted = reformatAuthors.reformatAuthors(authors);
+      // res.json(reformatted);
+      res.render('authors', {reformatted:reformatted});
     });
 });
 
