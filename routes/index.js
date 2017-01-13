@@ -167,5 +167,15 @@ router.get('/authors/:id', (req, res, next) => {
     });
 });
 
+// POST new author
+router.post('/newauthor', (req, res, next) => {
+  knex('author')
+    .insert(req.body)
+    .returning('id')
+    .then((id) => {
+      res.redirect('/authors');
+    });
+});
+
 
 module.exports = router;
