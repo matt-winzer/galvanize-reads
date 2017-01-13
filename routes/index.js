@@ -33,7 +33,7 @@ router.get('/books', (req, res, next) => {
 });
 
 // Render new book form
-router.get('/books/new', function(req, res, next) {
+router.get('/books/new', (req, res, next) => {
   res.render('newbook');
 });
 
@@ -63,7 +63,7 @@ router.get('/books/:id', (req, res, next) => {
 });
 
 // Render edit book form
-router.get('/books/:id/edit', function(req, res, next) {
+router.get('/books/:id/edit', (req, res, next) => {
   let id = req.params.id;
   knex('book')
     .where('id', id)
@@ -92,7 +92,7 @@ router.put('/books/:id/edit', (req, res, next) => {
     });
 });
 
-// DELETE route
+// DELETE book route
 router.delete('/books/:id', (req, res) => {
   let id = req.params.id;
   knex('book')
@@ -137,7 +137,7 @@ router.get('/authors', (req, res, next) => {
 });
 
 // Render new author form
-router.get('/authors/new', function(req, res, next) {
+router.get('/authors/new', (req, res, next) => {
   res.render('newauthor');
 });
 
