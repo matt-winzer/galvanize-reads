@@ -177,9 +177,10 @@ router.get('/authors/:id', (req, res, next) => {
     )
     .join('book_author', 'book_author.book_id', 'book.id')
     .join('author', 'author.id', 'book_author.author_id')
-    .where('book_id', id)
-    .then((authors) => {
-      const reformatted = reformatAuthors.reformatAuthors(authors);
+    .where('author_id', id)
+    .then((author) => {
+      const reformatted = reformatAuthors.reformatAuthors(author);
+      console.log(reformatted);
       res.render('single_author', {reformatted:reformatted});
     });
 });
