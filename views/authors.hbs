@@ -23,7 +23,7 @@
             <p>Books:</p>
             <br>
             {{#each this.books}}
-              <p class="author-books">{{this.book_title}}</p>
+              <a href="/books/{{this.book_id}}"><p class="author-books">{{this.book_title}}</p></a>
             {{/each}}
           </div>
           <div class="card-action">
