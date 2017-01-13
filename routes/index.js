@@ -198,6 +198,17 @@ router.put('/authors/:id/edit', (req, res, next) => {
     });
 });
 
+// DELETE author route
+router.delete('/authors/:id', (req, res) => {
+  let id = req.params.id;
+  knex('author')
+    .where('id', id)
+    .del()
+    .then((result) => {
+      res.redirect('/authors');
+    });
+});
+
 // POST new author
 router.post('/newauthor', (req, res, next) => {
   knex('author')
