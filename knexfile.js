@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.LOCAL_DATABASE_URL
+    connection: 'postgres://localhost/greads'
   },
 
   production: {
